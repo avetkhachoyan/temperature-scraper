@@ -1,0 +1,14 @@
+{
+"name": "kafkatomariadb",
+"config": {
+	"connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+	"tasks.max": "1",
+	"topics": "ts-messages",
+	"connection.url": "jdbc:mysql://ts-mariadb.temperature-scraper.svc.cluster.local:3306",
+	"connection.user": "<user>",
+	"connection.password": "<TBD at run>",
+	"auto.create": "true",
+	"key.converter": "io.confluent.connect.avro.AvroConverter",
+	"value.converter": "io.confluent.connect.avro.AvroConverter"
+	}
+}

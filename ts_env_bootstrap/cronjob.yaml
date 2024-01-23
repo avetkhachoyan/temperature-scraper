@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: temperature-scraper
+  labels:
+    app: temperature-scraper
+  namespace: temperature-scraper
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: temperature-scraper
+            image: temperature-scraper/temperature-scraper:latest
+            imagePullPolicy: Never
+            command:
+            - /bin/bash
+            - -c
+            - /app/temperature-scraper.sh
+          restartPolicy: OnFailure

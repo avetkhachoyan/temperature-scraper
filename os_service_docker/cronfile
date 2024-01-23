@@ -1,0 +1,1 @@
+0 * * * * /app/temperature_scraper.sh >> /var/log/cron.log 2>&1
