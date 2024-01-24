@@ -19,7 +19,7 @@ Database schema
 ... and there is a link to IPFS - the unique identifier
 
 
-Logging and monitoring tool is Kubernetes Dashboard
+Logging and monitoring tool is Kubernetes Dashboard. Errors are under log tab.
 
 
 ... to be continued ...
