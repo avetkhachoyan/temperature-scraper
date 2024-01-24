@@ -1,5 +1,3 @@
-FROM bitnami/kubectl:latest as kubectl
-
 FROM ubuntu:latest
 
 LABEL title="temperature-scraper" \
@@ -33,9 +31,6 @@ COPY ../kafka/kafka_client.properties /kafka_db_connection
 
 COPY ../ts_env_bootstrap/ts-webserver.sh /app
 RUN chmod +x /app/ts-webserver.sh
-
-COPY --from=kubectl /opt/bitnami/kubectl/bin/kubectl /usr/local/bin/
-RUN chmod +x /usr/local/bin/kubectl
 
 WORKDIR /app
 ENTRYPOINT /bin/bash 

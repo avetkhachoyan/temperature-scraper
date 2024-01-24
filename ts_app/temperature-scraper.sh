@@ -35,10 +35,7 @@
       ts_DataStorage=$ts_DateTime" "$ts_city" "$ts_IPFS && echo $ts_DataStorage
       ts_DataStorage_json="{""tsDateNTime: "$ts_DateTime", ""tsCity: "$ts_city", ""tsIPFS: "$ts_IPFS"}"
       echo $ts_DataStorage_json > /data-share/ts_kafka.txt
-    done 
-    
-    kubectl version
-
+    done
     ### END Kafka and MariaDB Data input ###
     
     sleep 10

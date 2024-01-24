@@ -5,6 +5,10 @@
 # minikube dashboard
 ### End minikube specifics ###
 
+### k8s environment ###
+kubectl apply -f ./ts_env_bootstrap/k8s_ts-env.yaml
+kubectl apply -f ./ts_env_bootstrap/k8s_ts-storage.yaml -n temperature-scraper
+
 ### k8s dashboard ###
 source ./k8s_dashboard/k8s_dashboard.sh
 
@@ -21,12 +25,6 @@ source ./kafka/kafka.sh
 
 ### mariadb ###
 source ./mariadb/mariadb.sh
-
-### k8s environment ###
-kubectl version
-kubectl apply -f ./ts_env_bootstrap/k8s_ts-env.yaml
-kubectl apply -f ./ts_env_bootstrap/k8s_ts-storage.yaml -n temperature-scraper
-## kubectl apply -f grafana.yaml --namespace=dia
 
 ### app deployment ###
 kubectl apply -f ./ts_env_bootstrap/ts-app.yaml -n temperature-scraper
