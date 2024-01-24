@@ -18,4 +18,8 @@ Database schema
 
 ... and there is a link to IPFS - the unique identifier
 
+
+Logging and monitoring tool is Kubernetes Dashboard
+
+
 ... to be continued ...
