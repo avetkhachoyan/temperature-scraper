@@ -13,6 +13,18 @@
 - Summary
 - License
 
+## Introduction
+fewrkgenl
+
+Here is the Check-list, it is supossoed to help tracking a progress of adeployment and a maintenace in general.
+
+- [] Kafka
+- [] MariaDB
+- [] Application
+- [] Scheduler
+
+fwreglkel
+
 ## Solution Design
 ### Logical schema
 ### Infrastracture components and interconnectio
