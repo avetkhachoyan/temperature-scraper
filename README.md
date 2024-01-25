@@ -8,7 +8,8 @@
     - Infrastracture components and interconnection
 - Deployment and maitenance
     - Core components
-    - Optional components
+    - Infrastructure setup
+    - Update and rollback
 - Monitoring and logging 
 - Summary
 - License
@@ -55,6 +56,20 @@ git clone https://github.com/avetkhachoyan/temperature-scraper.git \
 ```
 Detailes and a granual deployment, rollback, maintenace approach as per below paragraphs.
 
+**NB**\: Repo should be cloned and files should be avaliable in any deployment and maitenance   scenarios.  
+
+
+### Core components
+It is possible to TS to scrap the temprature and store it in solemly in IPFS as a standalone app. This is a core component, hence the image buid step should be run at any scenarios.
+
+Steps to get it run as standalone:
+```bash 
+docker build --no-cache --tag temperature-scraper/temperature-scraper -f ./ts_env_bootstrap/ts_app_ipfs.Dockerfile .
+
+docker run -it --rm  temperature-scraper/temperature-scraper:latest
+``` 
+
+### Infrastructure setup
 Here is the Check-list, which is supposed to help tracking a progress of a deployment and as well as a maintenace in general.
 
 - [ ] Kafka
@@ -62,15 +77,17 @@ Here is the Check-list, which is supposed to help tracking a progress of a deplo
 - [ ] Application
 - [ ] Scheduler
 
-**NB**\: Repo should be cloned and files should be avaliable in any deployment and maitenance   scenarios.  
+`ts_bootsrap.sh` files is designed to deploy the application and related infrastracture at once. It can be proceed per each step, for example run set environment with k8s natrive dashboard 
+```bash 
+kubectl apply -f ./ts_env_bootstrap/k8s_ts-env.yaml
+kubectl apply -f ./ts_env_bootstrap/k8s_ts-storage.yaml -n temperature-scraper
 
+./k8s_dashboard/k8s_dashboard.sh
+```
 
-### Core Components Granual and Manual Maitenance
-It is possible to TS to scrap the temprature and store it in solemly in IPFS as a standalone app. This is a core component, hence the steps below should be run at any scenarios.
+### Update and rollback
+Infrastructure is build as Kubernetes (k8s) cluster, so k8s reach tooling can be leverage for the maintenace.
 
-Steps to get it run as standalone 
-
-### Optional Components Granual and Manual Maitenance
 
 ## Monitoring and Logging 
 
