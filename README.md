@@ -131,4 +131,4 @@ Note, that default namespace is assumed if no explicit namespace is mentioned.
 This guide shows application deployment, maintenance and monitoring approach for "Temperature Scraper" app, based on bash scripts, docker and k8s toolset.
 Enjoy the temperature scrapping!
 
-[Ա](https://khachoyan.com) -- Review
+[Ա](https://khachoyan.com) --
