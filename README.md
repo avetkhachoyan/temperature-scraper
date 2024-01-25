@@ -31,7 +31,19 @@ Data flow is a pull event made by application (TS) from online resource - <https
 
 ### Infrastracture components and interconnection
 Herein is a brief overview with referencies to application and configuration files. 
-Applicatoin and related infrastructure runs at k8s cluster, all moving parts are orgonised under temparature scraper namespace - `ts_env_bootstrap/k8s_ts-env.yaml`. Cluster is set to HPA per `ts_env_bootstrap/k8s_hpa.yaml`. Application - `temperature-scraper.sh` is wrapped into Docker image per `ts_app_ipfs.Dockerfile`. List of cities to scrape a temparature from is in `ts_City.txt`. TS image runs as per k8s scheduler configured in `ts_env_bootstrap/k8s_cronjob.yaml` . Kafka and MariaDB configuration is combined into `kafka` and `mariadb` folders respectivaly.
+Applicatoin and related infrastructure runs at k8s cluster, all moving parts are orgonised under temparature scraper namespace - `ts_env_bootstrap/k8s_ts-env.yaml`. Cluster is set to HPA per `ts_env_bootstrap/k8s_hpa.yaml`. Application - `temperature-scraper.sh` is wrapped into Docker image per `ts_app_ipfs.Dockerfile`. List of cities to scrape a temparature from is in `ts_City.txt`. TS image runs as per k8s scheduler configured in `ts_env_bootstrap/k8s_cronjob.yaml` . Kafka and MariaDB configuration is combined into `kafka` and `mariadb` folders respectivaly. Databese schema is described in `mariadb\ts-db.sql` ; stractured per ***Database Schema***
+
+| Field          | Type         | Null | Key | Default             | Extra                         |
+|----------------|--------------|------|-----|---------------------|-------------------------------|
+| id             | bigint(20)   | NO   | PRI | NULL                | auto_increment                |
+| tsDBInsertTime | timestamp    | NO   |     | current_timestamp() | on update current_timestamp() |
+| tsDateNTime    | varchar(255) | NO   |     | NULL                |                               |
+| tsCity         | varchar(255) | NO   |     | NULL                |                               |
+| tsIPFS         | varchar(255) | NO   | UNI | NULL                |                               |
+||
+
+Kafka configuration is liste in property files with deployment scripts are in `./kafka` folder.
+
 
 ## Deployment and Maitenance
 Assuming one click approach, then `tl;dr,`
@@ -54,7 +66,8 @@ Here is the Check-list, which is supposed to help tracking a progress of a deplo
 
 
 ### Core Components Granual and Manual Maitenance
-It is possible to TS to scrap the temprature and store it in solemly in IPFS as a standalone app. This is a core component, so O
+It is possible to TS to scrap the temprature and store it in solemly in IPFS as a standalone app. This is a core component, hence the steps below should be run at any scenarios.
+
 Steps to get it run as standalone 
 
 ### Optional Components Granual and Manual Maitenance
@@ -77,16 +90,6 @@ Edit ts_CityList.txt file for the list of the citys tempereture should be scrape
 
 Application data flow includes IPFS link, kafka and mariadb as data processing
 
-Database schema
-
-| Field          | Type         | Null | Key | Default             | Extra                         |
-|----------------|--------------|------|-----|---------------------|-------------------------------|
-| id             | bigint(20)   | NO   | PRI | NULL                | auto_increment                |
-| tsDBInsertTime | timestamp    | NO   |     | current_timestamp() | on update current_timestamp() |
-| tsDateNTime    | varchar(255) | NO   |     | NULL                |                               |
-| tsCity         | varchar(255) | NO   |     | NULL                |                               |
-| tsIPFS         | varchar(255) | NO   | UNI | NULL                |                               |
-||
 
 ... and there is a link to IPFS - the unique identifier
 
