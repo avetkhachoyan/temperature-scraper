@@ -14,14 +14,14 @@
         - Rollback
 - Monitoring and logging
     - Kubernetes dashboard
-    - kubectl commandline toolset
+    - kubectl command-line toolset
 - License
 - Summary
 
 ## Introduction
 Temperature Scraper (TS) is a holistic system of temperature data collection and storage. It consists of robust and scalable infrastructure and native app.
 
-This repo provides a flexible approach of deployment and management. Application can be leveraged as a standalone for one-time use, as well as to deploy the complete infrastructure for continuous run for data collection and analysing. The scraped data is stored at MariaDB and at decentralized public domain aka IPFS .
+This repo provides a flexible approach of deployment and management. Application can be leveraged as a standalone for one-time use, as well as to deploy the complete infrastructure for continuous run for data collection and analyzing. The scraped data is stored at MariaDB and at decentralized public domain aka IPFS .
 
 Herein is a documentation about solution design, guides for a deployment and maintenance; and monitoring and logging approaches.
 
@@ -35,7 +35,7 @@ TS consists of a data collecting application instance aka \"Temperature Scraper 
 Data flow is a pull event made by application (TS) from an online resource - <https://wttr.in> , push event made by TS into IPFS and Kafka, pull event made by MariaDB from Kafka.
 
 ### Infrastructure architecture
-Herein is a brief overview with a references to application and configuration files. 
+Herein is a brief overview with references to application and configuration files. 
 Application and related infrastructure runs at k8s cluster, all moving parts are organized under "temperature-scraper" namespace - `ts_env_bootstrap/k8s_ts-env.yaml`. Cluster's scalability is set to HPA per `ts_env_bootstrap/k8s_hpa.yaml`. Application - `temperature-scraper.sh` is wrapped into Docker image per `ts_app_ipfs.Dockerfile`. Cities; to scrape temperature data from; are listed in `ts_City.txt`. TS image runs as per k8s scheduler; configured in `ts_env_bootstrap/k8s_cronjob.yaml` . Kafka and MariaDB configurations are combined into `kafka` and `mariadb` folders respectively. Database schema is described in `mariadb\ts-db.sql` ; structured per ***Database Schema***
 
 | Field          | Type         | Null | Key | Default             | Extra                         |
@@ -72,7 +72,7 @@ docker run -it --rm  temperature-scraper/temperature-scraper:latest
 ``` 
 
 ### Infrastructure setup
-Here is the Check-list, for tracking a progress of a deployment, as well as a maintenance in general.
+Here is the Check-list, for tracking the progress of a deployment, as well as maintenance in general.
 
 - [ ] Kafka
 - [ ] Database
@@ -88,7 +88,7 @@ kubectl apply -f ./ts_env_bootstrap/k8s_ts-storage.yaml -n temperature-scraper
 ```
 
 ### Update and rollback
-Infrastructure is build as Kubernetes (k8s) cluster, so k8s rolling update "zero downtime" approach can be leveraged for the maintenance.
+Infrastructure is built as Kubernetes (k8s) cluster, so k8s rolling update "zero downtime" approach can be leveraged for the maintenance.
 
 #### Update
 Steps are herein, note that the new image should be built and ready:
