@@ -106,38 +106,22 @@ In order to revert the update back to the previouse stage us `rollout undo` subc
 Monitoring and Logging is implemented by Kubernetes native dashaboard. Dashboard is avaliable after the deploytemtn - refer to `k8s_dashboard` folder and scripts there.  Dashboard access shoud be enabled by runnign `kubectl proxy` command. Dashboard can be accessd by the following link [k8s Dashboard](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) . Dashboard provides access to deployments, running application and Kubernetes cluster itself.
 
 ### kubectl commndline toolset
-Kubernetes commndline tool - kubectl - provides the whole varaity of the tools. Here is the list of commone commands, leveraged for monitoring, kogds and debugging. Note, the namespace whoud be mentioned for all of the comandds, except tke last one `kubestl ge tall -all-namespaces`
+Kubernetes commndline tool - kubectl - provides the whole varaity of the tools. Here is the list of commone commands, leveraged for monitoring, kogds and debugging. Note, the namespace whoud be mentioned for all of the comandds, except tke last one `kubectl get all --all-namespaces`
 ```bash
 kubectl get deployments
 kubectl get pods
 kubectl get svc
-kubectl logs pod <podname>
+kubectl logs <podname>
 kubectl describe pod <podname>
 ```
 Note, that without explicit namespace mentioning thise commands run agains default namspace.
 
 ## Summary
-
+The guide shows application deployemtn, maintenance and monitoring approach for Temperature scraper app, based on bash script, docker and k8s toolset.
+Enjoy the temperature scrapping!
 
 ## License
 [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
-Enjoy the temperature scrapping!
-
-
-
-temperature-scraper repo contains aplication, storage; including IPFS functionality, and monitoring, loging features.
-Run ts_bootstrap.sh to get application deployed up and running.
-Edit ts_CityList.txt file for the list of the citys tempereture should be scraped.
-
-Application data flow includes IPFS link, kafka and mariadb as data processing
-
-
-... and there is a link to IPFS - the unique identifier
-
-
-Logging and monitoring tool is Kubernetes Dashboard. Errors are under log tab.
-
 
 [(c)](https://khachoyan.com) -- Review .
 
