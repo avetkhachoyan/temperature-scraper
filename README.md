@@ -30,14 +30,6 @@ fwreglkel
 ### Infrastracture components and interconnectio
 ### Aplication and data flow
 
-
-```mermaid
-graph TS
-A-->B;
-B-->C;
-end
-```
-
 `ts_City.txt`
 `tl;dr,`
 ```bash
