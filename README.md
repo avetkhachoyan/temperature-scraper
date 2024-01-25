@@ -68,4 +68,5 @@ Database schema
 Logging and monitoring tool is Kubernetes Dashboard. Errors are under log tab.
 
 
-... to be continued ...
+[(c)](https://khachoyan.com) -- Review .
+
