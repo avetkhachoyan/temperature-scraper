@@ -15,8 +15,8 @@
 - Monitoring and logging
     - Kubernetes dashboard
     - kubectl commandline toolset
-- Summary
 - License
+- Summary
 
 ## Introduction
 Temperature Scraper (TS) is a holistic system of temperature data collection and storage. It consits of robust and scalable infrastructure and native app.
@@ -45,7 +45,6 @@ Applicatoin and related infrastructure runs at k8s cluster, all moving parts are
 | tsDateNTime    | varchar(255) | NO   |     | NULL                |                               |
 | tsCity         | varchar(255) | NO   |     | NULL                |                               |
 | tsIPFS         | varchar(255) | NO   | UNI | NULL                |                               |
-||
 
 Kafka configuration is set by *.property files and with the deployment scripts in `./kafka` folder.
 
@@ -125,11 +124,11 @@ kubectl describe pod <podname>
 ```
 Note, that default namespace is assumed if no explicit namespace mentioned.
 
+## License
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 ## Summary
 This guide shows application deployemnt, maintenance and monitoring approach for "Temperature Scraper" app, based on bash scripts, docker and k8s toolset.
 Enjoy the temperature scrapping!
-
-## License
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 [Ա](https://khachoyan.com) -- Review .
