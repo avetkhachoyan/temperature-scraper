@@ -30,9 +30,9 @@ source ./mariadb/mariadb.sh
 kubectl apply -f ./ts_env_bootstrap/ts-app.yaml -n temperature-scraper
 
 ### hpa ###
-kubectl apply -f ./ts_env_bootstrap/hpa.yaml -n temperature-scraper
+kubectl apply -f ./ts_env_bootstrap/k8s_hpa.yaml -n temperature-scraper
 
 ### scheduling ###
-kubectl apply -f ./ts_env_bootstrap/cronjob.yaml -n temperature-scraper
+kubectl apply -f ./ts_env_bootstrap/k8s_cronjob.yaml -n temperature-scraper
 
 exit $?
