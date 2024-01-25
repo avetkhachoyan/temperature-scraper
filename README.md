@@ -10,6 +10,8 @@
     - Core components
     - Infrastructure setup
     - Update and rollback
+        - Update
+        - Rollback
 - Monitoring and logging 
 - Summary
 - License
@@ -86,10 +88,33 @@ kubectl apply -f ./ts_env_bootstrap/k8s_ts-storage.yaml -n temperature-scraper
 ```
 
 ### Update and rollback
-Infrastructure is build as Kubernetes (k8s) cluster, so k8s reach tooling can be leverage for the maintenace.
+Infrastructure is build as Kubernetes (k8s) cluster, so k8s rolling update zero downtime approch can be leveraged for the maintenace.
 
+#### Update
+Steps are herein, note that the new image should be built and ready:
+
+1. List deployments: `kubectl -n temperature-scraper get deployments`
+2. Update the image: `kubectl -n temperature-scraper set image deployments/temperature-scraper temperature-scraper=temperature-scraper/temperature-scraper:latest`
+3. Validate the deployment: `kubectl -n temperature-scraper get pods`
+
+#### Rollback
+In order to revert the update back to the previouse stage us `rollout undo` subcommand.
+`kubectl -n temperature-scraper rollout undo deployments/temperature-scraper` . Follow up with the state leveraging `kubectl -n temperature-scraper get pods` ,  `kubectl -n temperature-scraper describe pod <podname>`, `kubectl -n temperature-scraper logs pod <podname>` and similar comands regarding deployemtn and services.
 
 ## Monitoring and Logging 
+### Kubernetes dashboard
+Monitoring and Logging is implemented by Kubernetes native dashaboard. Dashboard is avaliable after the deploytemtn - refer to `k8s_dashboard` folder and scripts there.  Dashboard access shoud be enabled by runnign `kubectl proxy` command. Dashboard can be accessd by the following link [k8s Dashboard](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) . Dashboard provides access to deployments, running application and Kubernetes cluster itself.
+
+### kubectl commndline toolset
+Kubernetes commndline tool - kubectl - provides the whole varaity of the tools. Here is the list of commone commands, leveraged for monitoring, kogds and debugging. Note, the namespace whoud be mentioned for all of the comandds, except tke last one `kubestl ge tall -all-namespaces`
+```bash
+kubectl get deployments
+kubectl get pods
+kubectl get svc
+kubectl logs pod <podname>
+kubectl describe pod <podname>
+```
+Note, that without explicit namespace mentioning thise commands run agains default namspace.
 
 ## Summary
 
