@@ -18,10 +18,10 @@ fewrkgenl
 
 Here is the Check-list, it is supossoed to help tracking a progress of adeployment and a maintenace in general.
 
--[ ] Kafka
--[ ] MariaDB
--[ ] Application
--[ ] Scheduler
+- [ ] Kafka
+- [ ] MariaDB
+- [ ] Application
+- [ ] Scheduler
 
 fwreglkel
 
